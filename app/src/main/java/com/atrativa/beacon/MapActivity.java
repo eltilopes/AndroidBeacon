@@ -14,6 +14,7 @@ import java.text.DecimalFormat;
 public class MapActivity extends AppCompatActivity {
 
     private Bitmap imagem;
+    private String nome;
     private Float distancia;
     private Float xBeacon;
     private Float yBeacon;
@@ -39,8 +40,9 @@ public class MapActivity extends AppCompatActivity {
             paint.setColor(Color.parseColor("#3CB371"));
             paint.setStyle(Paint.Style.FILL);
             paint.setTextSize(50);
-            c.drawText("Beacon Localizado",xBeacon + (x / 30) + 5, yBeacon, paint );
-            c.drawText("Distância: " + new DecimalFormat("0.00").format(distancia) + " mts." ,xBeacon + (x / 30) + 5, yBeacon + (x / 30) + 5, paint );
+            //c.drawText("Beacon Localizado",xBeacon + (x / 30) + 5, yBeacon, paint );
+            c.drawText(nome,xBeacon + (x / 30) -5, yBeacon, paint );
+            c.drawText("Distância: " + new DecimalFormat("0.00").format(distancia) + " mts." ,xBeacon + (x / 30) - 5, yBeacon + (x / 30) + 15, paint );
         }
 
         private void desenhandoMinhaPosicao(Canvas c, int x, int y, Paint paint) {
@@ -62,6 +64,7 @@ public class MapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        nome = getIntent().getStringExtra("nome");
         distancia = getIntent().getFloatExtra("distancia", 0f);
         xBeacon = getIntent().getFloatExtra("x", 0f);
         yBeacon = getIntent().getFloatExtra("y", 0f);

@@ -13,10 +13,13 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import org.altbeacon.beacon.Beacon;
 import org.altbeacon.beacon.BeaconConsumer;
@@ -34,6 +37,8 @@ public class ScrollingActivity extends AppCompatActivity implements BeaconConsum
     private static final int PERMISSION_REQUEST_COARSE_LOCATION = 1;
     private BeaconManager beaconManager;
     private Beacon beaconLocalizado;
+    private EditText editNome;
+    private String nome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +83,7 @@ public class ScrollingActivity extends AppCompatActivity implements BeaconConsum
                     double x = beaconLocalizado.getDistance();
                     String w = String.valueOf(x);
                     float y = Float.parseFloat(w);
+                    intent.putExtra("nome",nome );
                     intent.putExtra("distancia",Float.parseFloat(String.valueOf(beaconLocalizado.getDistance())) );
                     intent.putExtra("x",Float.parseFloat(beaconLocalizado.getId2().toString()) );
                     intent.putExtra("y",Float.parseFloat(beaconLocalizado.getId3().toString()) );
@@ -197,18 +203,13 @@ public class ScrollingActivity extends AppCompatActivity implements BeaconConsum
             @Override
             public void didRangeBeaconsInRegion(Collection<Beacon> beacons, Region region) {
                 if(beacons.size() > 0) {
-                    logToDisplay("Region: " + region.getUniqueId().toUpperCase());
+                    logToDisplay("Região: " + region.getUniqueId().toUpperCase());
                     logToDisplay("\n");
                 }
                 for (Beacon beacon: beacons) {
                     beaconLocalizado = beacon;
-                    logToDisplay("Informações do Beacon localizado");
-                    logToDisplay("");
-                    logToDisplay("Nome da Rede Bluetooth: " + beacon.getBluetoothName());
+                    logToDisplay("Animal localizado");
                     logToDisplay("Endereço Bluetooth: " + beacon.getBluetoothAddress());
-                    logToDisplay("ID1: " + beacon.getId1());
-                    logToDisplay("ID2: " + beacon.getId2());
-                    logToDisplay("ID3: " + beacon.getId3());
                     logToDisplay("Distância: " + new DecimalFormat("#0.000").format(beacon.getDistance()));
                     logToDisplay("");
                 }
@@ -222,9 +223,28 @@ public class ScrollingActivity extends AppCompatActivity implements BeaconConsum
     public void logToDisplay(final String line) {
         runOnUiThread(new Runnable() {
             public void run() {
-                EditText editText = (EditText)ScrollingActivity.this
+                TextView editText = (TextView)ScrollingActivity.this
                         .findViewById(R.id.monitoringText);
                 editText.append(line+"\n");
+                editNome = (EditText)ScrollingActivity.this
+                        .findViewById(R.id.nomePet);
+                TextWatcher textWatcher = new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        nome = "";
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        nome = charSequence.toString();
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+                        nome = editable.toString();
+                    }
+                };
+                editNome.addTextChangedListener(textWatcher);
             }
         });
     }
