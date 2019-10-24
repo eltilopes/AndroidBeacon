@@ -8,11 +8,24 @@
     tools:context="com.atrativa.beacon.ScrollingActivity"
     tools:showIn="@layout/activity_scrolling">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:id="@+id/monitoringText"
-        android:inputType="textMultiLine"/>
-
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_margin="@dimen/text_margin"
+            android:id="@+id/monitoringText"
+            android:inputType="textMultiLine"
+            android:hint="@string/beacon"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_margin="@dimen/text_margin"
+            android:id="@+id/namePet"
+            android:inputType="textPersonName"
+            android:hint="@string/pet"/>
+    </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

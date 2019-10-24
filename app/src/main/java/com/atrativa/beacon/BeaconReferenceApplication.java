@@ -56,6 +56,7 @@ public class BeaconReferenceApplication extends Application implements Bootstrap
         // ((TimedBeaconSimulator) BeaconManager.getBeaconSimulator()).createTimedSimulatedBeacons();
     }
 
+
     @Override
     public void didEnterRegion(Region arg0) {
         // In this example, this class sends a notification to the user whenever a Beacon

@@ -17,6 +17,7 @@ public class MapActivity extends AppCompatActivity {
     private Float distancia;
     private Float xBeacon;
     private Float yBeacon;
+    private String nomePet;
 
     class NossaTela extends View
     {    NossaTela(Context c){super(c);}
@@ -39,8 +40,8 @@ public class MapActivity extends AppCompatActivity {
             paint.setColor(Color.parseColor("#3CB371"));
             paint.setStyle(Paint.Style.FILL);
             paint.setTextSize(50);
-            c.drawText("Beacon Localizado",xBeacon + (x / 30) + 5, yBeacon, paint );
-            c.drawText("Distância: " + new DecimalFormat("0.00").format(distancia) + " mts." ,xBeacon + (x / 30) + 5, yBeacon + (x / 30) + 5, paint );
+            c.drawText(nomePet,xBeacon + (x / 30) + 5, yBeacon, paint );
+            c.drawText( new DecimalFormat("0.00").format(distancia) + " mts." ,xBeacon + (x / 30) + 5, yBeacon + (x / 30) + 5, paint );
         }
 
         private void desenhandoMinhaPosicao(Canvas c, int x, int y, Paint paint) {
@@ -49,7 +50,7 @@ public class MapActivity extends AppCompatActivity {
             paint.setColor(Color.parseColor("#CD5C5C"));
             paint.setStyle(Paint.Style.FILL);
             paint.setTextSize(50);
-            c.drawText("Você",x / 2 + (x / 20) + 5, y / 2, paint );
+            c.drawText("Eu",x / 2 + (x / 20) + 5, y / 2, paint );
         }
         private void desenhandoSinalAntena(Canvas c, int x, int y, Paint paint) {
             paint.setColor(Color.parseColor("#B0E0E6"));
@@ -65,6 +66,7 @@ public class MapActivity extends AppCompatActivity {
         distancia = getIntent().getFloatExtra("distancia", 0f);
         xBeacon = getIntent().getFloatExtra("x", 0f);
         yBeacon = getIntent().getFloatExtra("y", 0f);
+        nomePet = getIntent().getStringExtra("nomePet");
         setContentView(new NossaTela(this));
     }
 

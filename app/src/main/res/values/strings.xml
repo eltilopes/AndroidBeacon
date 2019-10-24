@@ -90,4 +90,6 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Configurações</string>
+    <string name="pet">Pet</string>
+    <string name="beacon">Beacon</string>
 </resources>
