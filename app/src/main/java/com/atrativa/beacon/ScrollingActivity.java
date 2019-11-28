@@ -38,7 +38,7 @@ public class ScrollingActivity extends AppCompatActivity implements BeaconConsum
     private BeaconManager beaconManager;
     private Beacon beaconLocalizado;
     private EditText editNome;
-    private String nome;
+    private String nome = "Nome do Animal";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

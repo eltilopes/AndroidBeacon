@@ -36,13 +36,13 @@ public class MapActivity extends AppCompatActivity {
 
         private void desenhandoBeacon(Canvas c, int x, Paint paint) {
             paint.setColor(Color.parseColor("#3CB371"));
-            c.drawCircle(xBeacon, yBeacon, x / 30, paint);
+            c.drawCircle(x/2, yBeacon, x / 40, paint);
             paint.setColor(Color.parseColor("#3CB371"));
             paint.setStyle(Paint.Style.FILL);
             paint.setTextSize(50);
             //c.drawText("Beacon Localizado",xBeacon + (x / 30) + 5, yBeacon, paint );
-            c.drawText(nome,xBeacon + (x / 30) -5, yBeacon, paint );
-            c.drawText("Distância: " + new DecimalFormat("0.00").format(distancia) + " mts." ,xBeacon + (x / 30) - 5, yBeacon + (x / 30) + 15, paint );
+            c.drawText(nome,x/2, yBeacon - 55, paint );
+            c.drawText("Distância: " + new DecimalFormat("0.00").format(distancia) + " mts." ,x / 2, yBeacon - 110, paint );
         }
 
         private void desenhandoMinhaPosicao(Canvas c, int x, int y, Paint paint) {
